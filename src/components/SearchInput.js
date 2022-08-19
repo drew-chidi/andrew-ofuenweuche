@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 
-const SearchInput = () => {
+const SearchInput = ({ getQuery }) => {
   const [query, setQuery] = useState("");
-  const [error, setError] = useState(true);
 
   const mystyle = {
     container: {
@@ -22,7 +21,10 @@ const SearchInput = () => {
     },
   };
 
-  const searchHandler = () => {};
+  const searchHandler = (e) => {
+    e.preventdefault();
+    getQuery(query);
+  };
   return (
     <form onSubmit={searchHandler} style={mystyle.container}>
       <div>
@@ -31,6 +33,8 @@ const SearchInput = () => {
           id='search'
           placeholder='Search...'
           style={mystyle.searchInput}
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
           required
         />
       </div>
