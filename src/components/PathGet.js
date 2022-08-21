@@ -30,12 +30,8 @@ const PathGet = ({ data, queryString }) => {
     }
   };
 
-  //let _name_first_tree =
-
   helper(data, queryString, "a");
 
-  // return foundPath
-  console.log(foundPath);
   return (
     <div>
       {foundPath.length > 0 ? (
