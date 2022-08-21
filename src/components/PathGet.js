@@ -1,24 +1,48 @@
 import React from "react";
-import { data } from "../data";
 
-const PathGet = ({ queryString }) => {
-  // program to check if an object is an array
+const PathGet = ({ data, queryString }) => {
+  const mystyle = {
+    notFound: {
+      color: "red",
+      fontSize: "14px",
+    },
+  };
 
-  // check if arr is array
-  const result = Array.isArray(data);
+  let isFound = false;
+  let foundPath = "";
+  let count = 0;
 
-  if (result) {
-    console.log(" is an array.");
-  } else {
-    const arrayOfObj = Object.entries(data).map((e) => ({ [e[0]]: e[1] }));
+  const helper = (currentitem, _target, _parentpath) => {
+    if (typeof currentitem !== "object") {
+      if (currentitem === _target) {
+        isFound = true;
+        foundPath = _parentpath;
+        return;
+      } else {
+        return;
+      }
+    }
 
-    console.log(arrayOfObj);
-    console.log(" is not an array.");
-  }
+    let _keys = Object.keys(currentitem);
+    for (let i = 0; i < _keys.length; i++) {
+      let currentPath = _parentpath + "." + _keys[i].toString();
+      helper(currentitem[_keys[i]], _target, currentPath);
+    }
+  };
 
+  //let _name_first_tree =
+
+  helper(data, queryString, "a");
+
+  // return foundPath
+  console.log(foundPath);
   return (
     <div>
-      <p></p>
+      {foundPath.length > 0 ? (
+        <p>{foundPath}</p>
+      ) : (
+        <p style={mystyle.notFound}>no path found for this string</p>
+      )}
     </div>
   );
 };

@@ -11,20 +11,25 @@ const SearchInput = ({ getQuery }) => {
       padding: "4px 10px",
       borderRadius: "8px",
       outline: "none",
+      width: "80%",
+      maxWidth: "300px",
     },
     button: {
       margin: "8px 0px",
       borderRadius: "4px",
-      color: "black",
+      color: "white",
       fontWeight: "600",
       outline: "none",
+      backgroundColor: "#636b64",
     },
   };
 
   const searchHandler = (e) => {
-    e.preventdefault();
+    e.preventDefault();
+    console.log("im clicked");
     getQuery(query);
   };
+  console.log("searchhandler", query);
   return (
     <form onSubmit={searchHandler} style={mystyle.container}>
       <div>
