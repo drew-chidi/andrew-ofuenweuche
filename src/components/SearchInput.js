@@ -26,10 +26,8 @@ const SearchInput = ({ getQuery }) => {
 
   const searchHandler = (e) => {
     e.preventDefault();
-    console.log("im clicked");
     getQuery(query);
   };
-  console.log("searchhandler", query);
   return (
     <form onSubmit={searchHandler} style={mystyle.container}>
       <div>

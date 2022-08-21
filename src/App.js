@@ -8,9 +8,7 @@ const App = () => {
   const [queryString, setQueryString] = useState("");
   const getQueryString = (text) => {
     setQueryString(text);
-    console.log("text", text);
   };
-  console.log(queryString);
   return (
     <div className='App'>
       <SearchInput getQuery={getQueryString} />
